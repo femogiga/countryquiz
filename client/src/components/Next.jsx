@@ -1,7 +1,7 @@
-const Next = ()=>{
-    return(
+const Next = ({ onClick }) => {
+    return (
         <div>
-            <button className='next buttons'>Next</button>
+            <button className='next buttons' onClick={onClick}>Next</button>
         </div>
     )
 }

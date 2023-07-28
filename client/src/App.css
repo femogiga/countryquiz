@@ -38,12 +38,13 @@ body {
   line-height: 1.6;
   font-size: var(--fs-md);
   background: url(./assets/countryquiz/background.png);
+  background-position: 0px;
   padding: 9rem 0;
 
 }
 
-img{
-  max-width:100%;
+img {
+  max-width: 100%;
 }
 
 
@@ -83,21 +84,22 @@ img{
 
 
 /* *********************************************************************************************************************************************** */
-.card{
-  width:100%;
+.card {
+  width: 100%;
   /* background-color: #F9A826; */
   border-radius: 16px;
-  padding:2rem 0;
+  padding: 2rem 0;
   background-color: white;
-  padding:4rem 0;
+  padding: 4rem 0;
   position: relative;
 }
+
 .card-panel {
   /* background-color: #F9A826; */
 
   width: 100%;
 
-  padding:0 1rem;
+  padding: 0 1rem;
 
 
 }
@@ -150,26 +152,27 @@ img{
 /* ***************************************************************** */
 
 
-.avatar  {
+.avatar {
   position: absolute;
   right: 0;
   top: -57px;
   /* background-color: #EA8282; */
-  width:100%;
-  justify-content:space-between;
+  width: 100%;
+  justify-content: space-between;
+  color: white;
 }
 
-.avatar h2{
-  align-self:flex-end;
+.avatar h2 {
+  align-self: flex-end;
   white-space: nowrap;
 }
 
-.avatar h1{
-  align-self:center;
+.avatar h1 {
+  align-self: center;
   white-space: nowrap;
 }
 
-.avatar img{
-  width:104.95px;
+.avatar img {
+  width: 104.95px;
 
 }
