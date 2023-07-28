@@ -1,0 +1,100 @@
+:root {
+  ---fs-sm: .75rem;
+  --fs-md: 1rem;
+  --fs-lg: 2rem;
+  -fs-xl: 2.25rem;
+  --clr-orange: #F9A826;
+  --clr-blue: #6066D0;
+  --clr-red: #EA8282;
+  --clr-green: #60BF88;
+
+}
+
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: aquamarine;
+}
+
+body {
+  line-height: 1.6;
+  font-size: var(--fs-md)
+}
+
+/****************************************************** Utility classes************************************************************************** */
+.flow-1 {
+  margin-block-end: 1rem
+}
+
+.flow-3 {
+  margin-block-end: 3rem
+}
+
+.flow-2 {
+  margin-block-end: 2rem
+}
+
+.flow-3 {
+  margin-block-end: 3rem
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.col-gap-1 {
+  column-gap: var(--fs-md);
+}
+
+
+
+/* *********************************************************************************************************************************************** */
+
+/*********************************** question button styles****************************** */
+.button>button {
+  width: 100%;
+  padding: var(---fs-sm) 1rem;
+  border-radius: 12px;
+  max-width: 29rem;
+  border: 2px solid var(--clr-blue);
+  color: var(--clr-blue);
+}
+
+.letter {
+  font-weight: 700;
+}
+
+.button>button:hover {
+  border-color: transparent
+}
+
+.button>button:hover {
+  background-color: var(--clr-orange);
+  color: white;
+}
+
+.wrong {
+  background-color: var(--clr-red)
+}
+
+.right {
+  background-color: var(--clr-green);
+}
+
+
+/* ***************************************************************** */
