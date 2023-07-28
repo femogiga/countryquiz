@@ -10,6 +10,10 @@
 
 }
 
+app {
+  width: 100%;
+}
+
 
 *,
 *::before,
@@ -20,16 +24,31 @@
 }
 
 #root {
-  max-width: 1280px;
+  max-width: 470px;
+  min-width: 214px;
   margin: 0 auto;
-  padding: 2rem;
-  background-color: aquamarine;
+  padding: 1rem;
+  /* background-color: aquamarine; */
+
+
+
 }
 
 body {
   line-height: 1.6;
-  font-size: var(--fs-md)
+  font-size: var(--fs-md);
+  background: url(./assets/countryquiz/background.png);
+  padding: 9rem 0;
+
 }
+
+img{
+  max-width:100%;
+}
+
+
+
+
 
 /****************************************************** Utility classes************************************************************************** */
 .flow-1 {
@@ -64,8 +83,27 @@ body {
 
 
 /* *********************************************************************************************************************************************** */
+.card{
+  width:100%;
+  /* background-color: #F9A826; */
+  border-radius: 16px;
+  padding:2rem 0;
+  background-color: white;
+  padding:4rem 0;
+  position: relative;
+}
+.card-panel {
+  /* background-color: #F9A826; */
 
-/*********************************** question button styles****************************** */
+  width: 100%;
+
+  padding:0 1rem;
+
+
+}
+
+/*********************************** question button styles and next****************************** */
+
 .button>button {
   width: 100%;
   padding: var(---fs-sm) 1rem;
@@ -96,5 +134,42 @@ body {
   background-color: var(--clr-green);
 }
 
+.next {
+  padding: var(---fs-sm) 2rem;
+  border-radius: 12px;
+  background-color: var(--clr-orange);
+  border: none;
+  color: white;
+  font-weight: 700;
+  margin-left: auto;
+  position: absolute;
+  right: 1rem;
+}
+
 
 /* ***************************************************************** */
+
+
+.avatar  {
+  position: absolute;
+  right: 0;
+  top: -57px;
+  /* background-color: #EA8282; */
+  width:100%;
+  justify-content:space-between;
+}
+
+.avatar h2{
+  align-self:flex-end;
+  white-space: nowrap;
+}
+
+.avatar h1{
+  align-self:center;
+  white-space: nowrap;
+}
+
+.avatar img{
+  width:104.95px;
+
+}
