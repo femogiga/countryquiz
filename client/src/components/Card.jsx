@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState, useRef } from "react"
 import Avatar from "./Avatar"
 import Button from "./Button"
 import CardPanel from "./CardPanel"
@@ -7,13 +7,16 @@ import Question from "./Question"
 import { CountryContext } from "../context/CountryContext"
 import random from "random"
 
-import { getRandomIndex } from "../utility/randomgen"
 
 
 
 
 
-const Card = ({ children }) => {
+
+
+
+
+const Card = (children) => {
     const { data, setData } = useContext(CountryContext)
     const [current, setCurrent] = useState();
     const [optionOne, setOptionOne] = useState({})
@@ -21,6 +24,7 @@ const Card = ({ children }) => {
     const [optionThree, setOptionThree] = useState({})
     const [past, setPast] = useState([])
     const [mapped, setMapped] = useState([])
+    const ref = useRef(null)
 
     let array = []
     useEffect(() => {
@@ -39,16 +43,16 @@ const Card = ({ children }) => {
             setOptionOne(() => data[randomIndex2]);
             setOptionTwo(() => data[randomIndex3]);
             setOptionThree(() => data[randomIndex4]);
-            // const filtered = data.filter(item => item?.name?.common !== current?.name?.common)
-            // setData(filtered)
+
             //array sort randomize the order to which the answers appear
             array.sort(() => Math.random() - 0.5)
             console.log('newArry', array)
+            console.log('current', current)
             console.log('option', optionOne)
             console.log('option', optionTwo)
             console.log('option', optionThree)
             setMapped(array)
-            console.log('mapped', mapped)
+            // console.log('mapped', mapped)
 
         }
         else {
@@ -56,28 +60,46 @@ const Card = ({ children }) => {
         }
 
 
+
     }, [data])
 
-    //array variable createss a normal array and is set to mapped
+    //array variable creates a normal array
+    //and is set to mapped for the mapping of answers
 
     array = [optionOne, optionTwo, optionThree, current]
     const letter = ["A", "B", "C", "D"]
 
-    const handleNext =(e)=>{
+    const handleNext = (e) => {
         e.preventDefault()
         const filtered = data.filter(item => item?.name?.common !== current?.name?.common)
         setData(filtered)
 
     }
 
+    const handleAnswer = (e) => {
+        console.log(current?.capital)
+        e.preventDefault()
+        if (e.target.id === ref.current.innerText) {
+            // console.log(e.target.id + " ==== " + ref.current.innerText)
+            console.log('true')
+            return
+        }
+        else {
+            // console.log(e.target.id + " ==== " + ref.current.innerText)
+            // console.log('target',current?.capital)
+            console.log('false')
+            return;
+        }
+
+    }
+
+
+
+
 
     return (
         <div className="card">
             <CardPanel>
-                {
-
-                    // console.log('current===>', current?.name?.common)
-                }
                 <Avatar />
                 {/* <Question questionText={current?.capital} />
                 <Button countryText={current?.name?.common} />
@@ -85,12 +107,12 @@ const Card = ({ children }) => {
                 <Button countryText={optionTwo?.capital} />
                 <Button countryText={optionThree?.capital} /> */}
 
-                <Question questionText={mapped[random.int(0, 3)]?.capital} />
+                <Question key='question' questionText={mapped[random.int(0, 3)]?.capital} value={mapped[random.int(0, 3)]} ref={ref} />
                 {
-                    mapped.map((answer, index) => (<Button key={index} letter={letter[index]} countryText={answer?.name?.common} />))
+                    mapped.map((answer, index) => (<Button id={answer?.capital} key={index} letter={letter[index]} countryText={answer?.name?.common} onClick={(e) => handleAnswer(e)} value={answer?.name?.common} />))
                 }
 
-                <Next onClick={(e)=>handleNext(e)} />
+                <Next onClick={(e) => handleNext(e)} />
             </CardPanel>
         </div>
     )
