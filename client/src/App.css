@@ -1,8 +1,8 @@
 :root {
-  ---fs-sm: .75rem;
+  --fs-sm: .75rem;
   --fs-md: 1rem;
   --fs-lg: 2rem;
-  -fs-xl: 2.25rem;
+  --fs-xl: 2.25rem;
   --clr-orange: #F9A826;
   --clr-blue: #6066D0;
   --clr-red: #EA8282;
@@ -88,7 +88,6 @@ img {
   width: 100%;
   /* background-color: #F9A826; */
   border-radius: 16px;
-  padding: 2rem 0;
   background-color: white;
   padding: 4rem 0;
   position: relative;
@@ -105,10 +104,23 @@ img {
 }
 
 /*********************************** question button styles and next****************************** */
+.right-answer-style {
+
+  background: var(--clr-green);
+  border: transparent;
+  color: white;
+}
+
+.wrong-answer-style {
+  background-color: var(--clr-red);
+  color: white;
+  border: transparent;
+
+}
 
 .button>button {
   width: 100%;
-  padding: var(---fs-sm) 1rem;
+  padding: var(--fs-sm) 1rem;
   border-radius: 12px;
   max-width: 29rem;
   border: 2px solid var(--clr-blue);
@@ -128,16 +140,31 @@ img {
   color: white;
 }
 
-.wrong {
-  background-color: var(--clr-red)
+.button>button:focus {
+  border: none;
+  color: white;
+
 }
 
-.right {
-  background-color: var(--clr-green);
+.button>button:disabled {
+  border: none;
+
 }
+
+
+button:disabled.right-answer-style {
+  color: white;
+}
+
+button:disabled.wrong-answer-style {
+  color: white;
+}
+
+
+
 
 .next {
-  padding: var(---fs-sm) 2rem;
+  padding: var(--fs-sm) 2rem;
   border-radius: 12px;
   background-color: var(--clr-orange);
   border: none;
