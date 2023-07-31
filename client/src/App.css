@@ -221,3 +221,8 @@ button:disabled.wrong-answer-style {
 .hide {
   display: none
 }
+
+.flag>img {
+  width: 25%;
+  object-fit: cover;
+}

@@ -120,26 +120,35 @@ const CardFlag = (children) => {
 
     }
 
-    const quest =  [random.int(0, 3)]
+    const quest = [random.int(0, 3)]
 
+    // to do : this renders the type of question based on the second of time
+    // will use a boolean value to change state in the question object in
+    // order to determine which question to render.
+    // will uncomment the expression below to {rend} to continue
 
+    // const rend = new Date().getSeconds() % 2 === 0 ? (<div><Flag src={mapped[quest]?.flags?.png} /><Question key='question' questionText={mapped[quest]?.capital} ref={ref} /></div>) :
+    //     (<Question key='question' questionText={mapped[quest]?.capital} ref={ref} />)
 
     return (
         <div className="card">
-            <CardPanel>
-                <Avatar />
-                <Flag src={mapped[quest]?.flags?.png}/>
-                <Question key='question' questionText={mapped[quest]?.capital} ref={ref} />
+            {
+                <CardPanel>
+                    <Avatar />
+                    <Flag src={mapped[quest]?.flags?.png} />
+                    <Question key='question' questionText={mapped[quest]?.capital} ref={ref} />
+                    {/* {rend} */}
 
 
-                <Button id={mapped[0]?.capital} disabled={answerState} letter={letter[0]} countryText={mapped[0]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[0]?.name?.common} />
-                <Button id={mapped[1]?.capital} disabled={answerState} letter={letter[1]} countryText={mapped[1]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[1]?.name?.common} />
-                <Button id={mapped[2]?.capital} disabled={answerState} letter={letter[2]} countryText={mapped[2]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[2]?.name?.common} />
-                <Button id={mapped[3]?.capital} disabled={answerState} letter={letter[3]} countryText={mapped[3]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[3]?.name?.common} />
+                    <Button id={mapped[0]?.capital} disabled={answerState} letter={letter[0]} countryText={mapped[0]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[0]?.name?.common} />
+                    <Button id={mapped[1]?.capital} disabled={answerState} letter={letter[1]} countryText={mapped[1]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[1]?.name?.common} />
+                    <Button id={mapped[2]?.capital} disabled={answerState} letter={letter[2]} countryText={mapped[2]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[2]?.name?.common} />
+                    <Button id={mapped[3]?.capital} disabled={answerState} letter={letter[3]} countryText={mapped[3]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[3]?.name?.common} />
 
 
-                <Next onClick={(e) => handleNext(e)} />
-            </CardPanel>
+                    <Next onClick={(e) => handleNext(e)} />
+                </CardPanel>
+            }
         </div>
     )
 }
