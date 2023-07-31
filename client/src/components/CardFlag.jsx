@@ -6,6 +6,7 @@ import Next from "./Next"
 import Question from "./Question"
 import { CountryContext } from "../context/CountryContext"
 import random from "random"
+import Flag from "./Flag"
 
 
 
@@ -16,7 +17,7 @@ import random from "random"
 
 
 
-const Card = (children) => {
+const CardFlag = (children) => {
     const { data, setData } = useContext(CountryContext)
     const [current, setCurrent] = useState();
     const [optionOne, setOptionOne] = useState({})
@@ -119,7 +120,7 @@ const Card = (children) => {
 
     }
 
-
+    const quest =  [random.int(0, 3)]
 
 
 
@@ -127,7 +128,8 @@ const Card = (children) => {
         <div className="card">
             <CardPanel>
                 <Avatar />
-                <Question key='question' questionText={mapped[random.int(0, 3)]?.capital} ref={ref} />
+                <Flag src={mapped[quest]?.flags?.png}/>
+                <Question key='question' questionText={mapped[quest]?.capital} ref={ref} />
 
 
                 <Button id={mapped[0]?.capital} disabled={answerState} letter={letter[0]} countryText={mapped[0]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[0]?.name?.common} />
@@ -142,4 +144,4 @@ const Card = (children) => {
     )
 }
 
-export default Card
+export default CardFlag

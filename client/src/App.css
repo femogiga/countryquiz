@@ -104,19 +104,7 @@ img {
 }
 
 /*********************************** question button styles and next****************************** */
-.right-answer-style {
 
-  background: var(--clr-green);
-  border: transparent;
-  color: white;
-}
-
-.wrong-answer-style {
-  background-color: var(--clr-red);
-  color: white;
-  border: transparent;
-
-}
 
 .button>button {
   width: 100%;
@@ -202,4 +190,34 @@ button:disabled.wrong-answer-style {
 .avatar img {
   width: 104.95px;
 
+}
+
+
+.right-answer-style {
+
+  background: var(--clr-green);
+  border: transparent;
+  color: white;
+}
+
+.wrong-answer-style {
+
+  background-color: var(--clr-red);
+  color: white;
+  border: transparent;
+
+}
+
+.right-answer-style .right,
+.wrong-answer-style .wrong {
+  display: block;
+}
+
+.right,
+.wrong {
+  display: none;
+}
+
+.hide {
+  display: none
 }
