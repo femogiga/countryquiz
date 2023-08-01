@@ -28,7 +28,7 @@ const CardFlag = (children) => {
     const [answerState, setAnswerState] = useState(false)
     const [array, setArray] = useState()
     const [styles, setStyles] = useState(null)
-    const [questionType,setQuestionType] = useState(false)
+    const [questionType, setQuestionType] = useState(false)
 
 
 
@@ -93,20 +93,20 @@ const CardFlag = (children) => {
         const filtered = data.filter(item => item?.name?.common !== current?.name?.common)
         setData(filtered)
         setAnswerState(false)
-        if(new Date().getSeconds() % 2 === 0){
-            setQuestionType(true)
+        if (new Date().getSeconds() % 2 === 0) {
+            setQuestionType(() => true)
             return
         }
-        else{
-            setQuestionType(false)
+        else {
+            setQuestionType(() => false)
             return
         }
 
 
-        return
+
     }
 
-
+    console.log('quest', questionType)
 
     //ref from forwardRef on Question component
     // id compared to the ref innerText if the component
@@ -138,8 +138,8 @@ const CardFlag = (children) => {
     // order to determine which question to render.
     // will uncomment the expression below to {rend} to continue
 
-     const rend = questionType ? (<div><Flag src={mapped[quest]?.flags?.png} /><Question questionType = {questionType} key='question' questionText={mapped[quest]?.capital} ref={ref} /></div>) :
-        (<Question key='question' questionType = {questionType} questionText={mapped[quest]?.capital} ref={ref} />)
+    const rend = questionType ? (<div><Flag src={mapped[quest]?.flags?.png} /><Question questionType={questionType} key='question' questionText={mapped[quest]?.capital} ref={ref} /></div>) :
+        (<div><div className='hold-space'></div><Question key='question' questionType={questionType} questionText={mapped[quest]?.capital} ref={ref} /></div>)
 
     return (
         <div className="card">
@@ -151,10 +151,12 @@ const CardFlag = (children) => {
                     {rend}
 
 
-                    <Button id={mapped[0]?.capital} disabled={answerState} letter={letter[0]} countryText={mapped[0]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[0]?.name?.common} />
+                    {mapped.map((question, index) => (<Button key={index} id={question?.capital} disabled={answerState} letter={letter[index]} countryText={question?.name?.common} onClick={(e) => handleAnswer(e)} value={question?.name?.common} />))}
+
+                    {/* <Button id={mapped[0]?.capital} disabled={answerState} letter={letter[0]} countryText={mapped[0]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[0]?.name?.common} />
                     <Button id={mapped[1]?.capital} disabled={answerState} letter={letter[1]} countryText={mapped[1]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[1]?.name?.common} />
                     <Button id={mapped[2]?.capital} disabled={answerState} letter={letter[2]} countryText={mapped[2]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[2]?.name?.common} />
-                    <Button id={mapped[3]?.capital} disabled={answerState} letter={letter[3]} countryText={mapped[3]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[3]?.name?.common} />
+                    <Button id={mapped[3]?.capital} disabled={answerState} letter={letter[3]} countryText={mapped[3]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[3]?.name?.common} /> */}
 
 
                     <Next onClick={(e) => handleNext(e)} />

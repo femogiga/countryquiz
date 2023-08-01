@@ -35,7 +35,8 @@ app {
 }
 
 body {
-  line-height: 1.6;
+  font-family: 'Poppins', sans-serif, 'Raleway', sans-serif;
+  line-height: 1.3;
   font-size: var(--fs-md);
   background: url(./assets/countryquiz/background.png);
   background-position: 0px;
@@ -114,6 +115,8 @@ img {
   max-width: 29rem;
   border: 2px solid var(--clr-blue);
   color: var(--clr-blue);
+
+
 }
 
 .letter {
@@ -133,10 +136,12 @@ img {
   border: none;
   color: white;
 
+
 }
 
 .button>button:disabled {
   border: none;
+
 
 }
 
@@ -147,6 +152,11 @@ button:disabled.right-answer-style {
 
 button:disabled.wrong-answer-style {
   color: white;
+}
+
+
+button:active {
+  transform: scale(1)
 }
 
 
@@ -211,7 +221,7 @@ button:disabled.wrong-answer-style {
 
 /* button span pointer events removes style from span with button */
 
-.button span{
+.button span {
   pointer-events: none;
   background-color: unset;
 }
@@ -230,7 +240,17 @@ button:disabled.wrong-answer-style {
   display: none
 }
 
+
+
 .flag>img {
-  width: 25%;
+  width: 30%;
+  aspect-ratio: 3/1.5;
   object-fit: cover;
+}
+
+/* hold-space makes sure that when flag is not render,
+ elements to move up and down */
+.hold-space {
+  height: 3.806rem;
+
 }
