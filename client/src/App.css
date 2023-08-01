@@ -91,6 +91,7 @@ img {
   background-color: white;
   padding: 4rem 0;
   position: relative;
+  min-height: 31.875rem;
 }
 
 .card-panel {
@@ -206,6 +207,13 @@ button:disabled.wrong-answer-style {
   color: white;
   border: transparent;
 
+}
+
+/* button span pointer events removes style from span with button */
+
+.button span{
+  pointer-events: none;
+  background-color: unset;
 }
 
 .right-answer-style .right,
