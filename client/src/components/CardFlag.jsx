@@ -28,6 +28,7 @@ const CardFlag = (children) => {
     const [answerState, setAnswerState] = useState(false)
     const [array, setArray] = useState()
     const [styles, setStyles] = useState(null)
+    const [questionType,setQuestionType] = useState(false)
 
 
 
@@ -82,15 +83,25 @@ const CardFlag = (children) => {
     const letter = ["A", "B", "C", "D"]
 
     const handleNext = (e) => {
+        e.preventDefault()
         const buttons = document.querySelectorAll('.button button');
         buttons.forEach((button) => {
             button.classList.remove('right-answer-style', 'wrong-answer-style');
         });
 
+
         const filtered = data.filter(item => item?.name?.common !== current?.name?.common)
         setData(filtered)
         setAnswerState(false)
-        e.preventDefault()
+        if(new Date().getSeconds() % 2 === 0){
+            setQuestionType(true)
+            return
+        }
+        else{
+            setQuestionType(false)
+            return
+        }
+
 
         return
     }
@@ -127,17 +138,17 @@ const CardFlag = (children) => {
     // order to determine which question to render.
     // will uncomment the expression below to {rend} to continue
 
-    // const rend = new Date().getSeconds() % 2 === 0 ? (<div><Flag src={mapped[quest]?.flags?.png} /><Question key='question' questionText={mapped[quest]?.capital} ref={ref} /></div>) :
-    //     (<Question key='question' questionText={mapped[quest]?.capital} ref={ref} />)
+     const rend = questionType ? (<div><Flag src={mapped[quest]?.flags?.png} /><Question questionType = {questionType} key='question' questionText={mapped[quest]?.capital} ref={ref} /></div>) :
+        (<Question key='question' questionType = {questionType} questionText={mapped[quest]?.capital} ref={ref} />)
 
     return (
         <div className="card">
             {
                 <CardPanel>
                     <Avatar />
-                    <Flag src={mapped[quest]?.flags?.png} />
-                    <Question key='question' questionText={mapped[quest]?.capital} ref={ref} />
-                    {/* {rend} */}
+                    {/* <Flag src={mapped[quest]?.flags?.png} />
+                    <Question key='question' questionText={mapped[quest]?.capital} ref={ref} /> */}
+                    {rend}
 
 
                     <Button id={mapped[0]?.capital} disabled={answerState} letter={letter[0]} countryText={mapped[0]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[0]?.name?.common} />
