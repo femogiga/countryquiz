@@ -154,10 +154,12 @@ const CardFlag = (children) => {
     return (
         <div className="card">
             {
+
                 <>
+                  <Avatar finished={finished} />
                     {finished ? <ScoreCard score={score} finished={finished} /> :
                         <CardPanel>
-                            <Avatar finished={finished} />
+
                             {/* <Flag src={mapped[quest]?.flags?.png} />
                     <Question key='question' questionText={mapped[quest]?.capital} ref={ref} /> */}
                             {rend}

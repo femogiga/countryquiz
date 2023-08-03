@@ -288,3 +288,8 @@ button:active {
   font-size: var(--fs-xl);
   color:var(--clr-green)
 }
+
+.scorecard h1{
+  z-index:-4;
+
+}

@@ -3,11 +3,11 @@ import Avatar from "./Avatar"
 
 const ScoreCard = ({score,finished}) => {
     return (
-        <div className='card'>
+        <div className='card scorecard'>
             <CardPanel>
-            <Avatar finished={finished} />
+            {/* <Avatar finished={finished} /> */}
                 <article className="try-again flex flex-col">
-                    <div className="flow-3">
+                    <div className="flow-1">
                         <img src='../src/assets/countryquiz/undraw_winners.svg' />
                     </div>
                     <h2 className="boldest">Results</h2>
