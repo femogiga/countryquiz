@@ -8,6 +8,7 @@ import { CountryContext } from "../context/CountryContext"
 import random from "random"
 import Flag from "./Flag"
 import { getRandomIndex } from "../utility/randomgen"
+import ScoreCard from "./ScoreCard"
 
 
 
@@ -153,23 +154,27 @@ const CardFlag = (children) => {
     return (
         <div className="card">
             {
-                <CardPanel>
-                    <Avatar />
-                    {/* <Flag src={mapped[quest]?.flags?.png} />
+                <>
+                    {finished ? <ScoreCard score={score} finished={finished} /> :
+                        <CardPanel>
+                            <Avatar finished={finished} />
+                            {/* <Flag src={mapped[quest]?.flags?.png} />
                     <Question key='question' questionText={mapped[quest]?.capital} ref={ref} /> */}
-                    {rend}
+                            {rend}
 
 
-                    {mapped.map((question, index) => (<Button key={index} id={question?.capital} disabled={answerState} letter={letter[index]} countryText={question?.name?.common} onClick={(e) => handleAnswer(e)} value={question?.name?.common} />))}
+                            {mapped.map((question, index) => (<Button key={index} id={question?.capital} disabled={answerState} letter={letter[index]} countryText={question?.name?.common} onClick={(e) => handleAnswer(e)} value={question?.name?.common} />))}
 
-                    {/* <Button id={mapped[0]?.capital} disabled={answerState} letter={letter[0]} countryText={mapped[0]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[0]?.name?.common} />
+                            {/* <Button id={mapped[0]?.capital} disabled={answerState} letter={letter[0]} countryText={mapped[0]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[0]?.name?.common} />
                     <Button id={mapped[1]?.capital} disabled={answerState} letter={letter[1]} countryText={mapped[1]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[1]?.name?.common} />
                     <Button id={mapped[2]?.capital} disabled={answerState} letter={letter[2]} countryText={mapped[2]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[2]?.name?.common} />
                     <Button id={mapped[3]?.capital} disabled={answerState} letter={letter[3]} countryText={mapped[3]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[3]?.name?.common} /> */}
 
 
-                    <Next onClick={(e) => handleNext(e)} />
-                </CardPanel>
+                            <Next onClick={(e) => handleNext(e)} />
+                        </CardPanel>
+                    }
+                </>
             }
         </div>
     )

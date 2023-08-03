@@ -73,6 +73,10 @@ img {
   display: flex;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .flex-center {
   justify-content: space-between;
   align-items: center;
@@ -80,6 +84,14 @@ img {
 
 .col-gap-1 {
   column-gap: var(--fs-md);
+}
+
+.bold {
+  font-weight: 800;
+}
+
+.boldest {
+  font-weight: 900;
 }
 
 
@@ -123,11 +135,10 @@ img {
   font-weight: 700;
 }
 
-.button>button:hover {
-  border-color: transparent
-}
+
 
 .button>button:hover {
+  border-color: transparent;
   background-color: var(--clr-orange);
   color: white;
 }
@@ -253,4 +264,27 @@ button:active {
 .hold-space {
   height: 3.806rem;
 
+}
+
+/******************************************* Result summary Card************************************ */
+.try-again-button {
+  padding: 1rem 3.3rem;
+  font-size: var(--fs-md);
+  border-radius: 10px;
+}
+
+
+.try-again {
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+}
+
+.try-again>h2 {
+  font-size: 3rem;
+}
+
+.score{
+  font-size: var(--fs-xl);
+  color:var(--clr-green)
 }

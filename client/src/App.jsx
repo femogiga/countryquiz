@@ -2,6 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import Card from './components/Card'
 import CardFlag from './components/CardFlag'
+import ScoreCard from './components/ScoreCard'
+
 
 function App() {
 
@@ -10,6 +12,7 @@ function App() {
     <div className='app'>
       {/* <Card/> */}
       <CardFlag/>
+      {/* <ScoreCard/> */}
     </div>
   )
 }
