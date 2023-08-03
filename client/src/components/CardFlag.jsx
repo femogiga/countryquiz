@@ -7,6 +7,7 @@ import Question from "./Question"
 import { CountryContext } from "../context/CountryContext"
 import random from "random"
 import Flag from "./Flag"
+import { getRandomIndex } from "../utility/randomgen"
 
 
 
@@ -19,16 +20,18 @@ import Flag from "./Flag"
 
 const CardFlag = (children) => {
     const { data, setData } = useContext(CountryContext)
-    const [current, setCurrent] = useState();
-    const [optionOne, setOptionOne] = useState({})
-    const [optionTwo, setOptionTwo] = useState({})
-    const [optionThree, setOptionThree] = useState({})
+    const [current, setCurrent] = useState(data[1]);
+    const [optionOne, setOptionOne] = useState(data[getRandomIndex(data)])
+    const [optionTwo, setOptionTwo] = useState(data[getRandomIndex(data)])
+    const [optionThree, setOptionThree] = useState(data[getRandomIndex(data)])
     const [score, setScore] = useState(0)
     const [mapped, setMapped] = useState([])
     const [answerState, setAnswerState] = useState(false)
     const [array, setArray] = useState()
     const [styles, setStyles] = useState(null)
     const [questionType, setQuestionType] = useState(false)
+    const [numQuestions, setNumQuestions] = useState(0)
+    const [finished, setFinished] = useState(false)
 
 
 
@@ -84,6 +87,11 @@ const CardFlag = (children) => {
 
     const handleNext = (e) => {
         e.preventDefault()
+        if (numQuestions >= 9) {
+            setFinished(true)
+            return
+        }
+        else setNumQuestions((numQuestions => ++numQuestions))
         const buttons = document.querySelectorAll('.button button');
         buttons.forEach((button) => {
             button.classList.remove('right-answer-style', 'wrong-answer-style');
@@ -107,6 +115,7 @@ const CardFlag = (children) => {
     }
 
     console.log('quest', questionType)
+    console.log('nomQuestion', numQuestions)
 
     //ref from forwardRef on Question component
     // id compared to the ref innerText if the component
@@ -130,7 +139,7 @@ const CardFlag = (children) => {
 
 
     }
-
+    console.log('score', score)
     const quest = [random.int(0, 3)]
 
     // to do : this renders the type of question based on the second of time
