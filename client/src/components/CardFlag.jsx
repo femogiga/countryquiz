@@ -69,8 +69,6 @@ const CardFlag = (children) => {
 
             // console.log('mapped', mapped)
 
-
-
         }
         else {
             return
@@ -111,8 +109,6 @@ const CardFlag = (children) => {
             return
         }
 
-
-
     }
 
     console.log('quest', questionType)
@@ -140,6 +136,11 @@ const CardFlag = (children) => {
 
 
     }
+
+
+    const handleRetry = () => {
+        window.location.reload()
+    }
     console.log('score', score)
     const quest = [random.int(0, 3)]
 
@@ -157,7 +158,7 @@ const CardFlag = (children) => {
 
                 <>
                     <Avatar finished={finished} />
-                    {finished ? <ScoreCard score={score} finished={finished} /> :
+                    {finished ? <ScoreCard score={score} finished={finished}  onClick = {handleRetry}/> :
                         <CardPanel>
 
                             {/* <Flag src={mapped[quest]?.flags?.png} />
