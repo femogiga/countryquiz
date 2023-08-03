@@ -65,8 +65,8 @@ img {
   margin-block-end: 2rem
 }
 
-.flow-3 {
-  margin-block-end: 3rem
+.flow-5 {
+  margin-block-end: 5rem
 }
 
 .flex {
@@ -104,7 +104,8 @@ img {
   background-color: white;
   padding: 4rem 0;
   position: relative;
-  min-height: 31.875rem;
+  /* min-height: 31.875rem; */
+  min-height: 33rem;
 }
 
 .card-panel {
@@ -207,11 +208,11 @@ button:active {
 .avatar h1 {
   align-self: center;
   white-space: nowrap;
+  margin-block-end: 1rem;
 }
 
 .avatar img {
-  width: 104.95px;
-
+  width: 27%;
 }
 
 
@@ -254,7 +255,8 @@ button:active {
 
 
 .flag>img {
-  width: 30%;
+  /* width: 30%; */
+  width: 5.25rem;
   aspect-ratio: 3/1.5;
   object-fit: cover;
 }
@@ -268,7 +270,7 @@ button:active {
 
 /******************************************* Result summary Card************************************ */
 .try-again-button {
-  padding: 1rem 3.3rem;
+  padding: .8rem 3rem;
   font-size: var(--fs-md);
   border-radius: 10px;
 }
@@ -281,15 +283,18 @@ button:active {
 }
 
 .try-again>h2 {
-  font-size: 3rem;
-}
-
-.score{
   font-size: var(--fs-xl);
-  color:var(--clr-green)
 }
 
-.scorecard h1{
-  z-index:-4;
+.score {
+  font-size: var(--fs-xl);
+  color: var(--clr-green)
+}
+
+
+
+div.card.scorecard {
+  padding: 0;
+  color: #1D355D;
 
 }

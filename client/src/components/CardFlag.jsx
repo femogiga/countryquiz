@@ -156,7 +156,7 @@ const CardFlag = (children) => {
             {
 
                 <>
-                  <Avatar finished={finished} />
+                    <Avatar finished={finished} />
                     {finished ? <ScoreCard score={score} finished={finished} /> :
                         <CardPanel>
 
