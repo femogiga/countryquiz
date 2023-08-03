@@ -6,6 +6,9 @@ import Next from "./Next"
 import Question from "./Question"
 import { CountryContext } from "../context/CountryContext"
 import random from "random"
+import Flag from "./Flag"
+import { getRandomIndex } from "../utility/randomgen"
+import ScoreCard from "./ScoreCard"
 
 
 
@@ -18,15 +21,18 @@ import random from "random"
 
 const Card = (children) => {
     const { data, setData } = useContext(CountryContext)
-    const [current, setCurrent] = useState();
-    const [optionOne, setOptionOne] = useState({})
-    const [optionTwo, setOptionTwo] = useState({})
-    const [optionThree, setOptionThree] = useState({})
+    const [current, setCurrent] = useState(data[1]);
+    const [optionOne, setOptionOne] = useState(data[getRandomIndex(data)])
+    const [optionTwo, setOptionTwo] = useState(data[getRandomIndex(data)])
+    const [optionThree, setOptionThree] = useState(data[getRandomIndex(data)])
     const [score, setScore] = useState(0)
     const [mapped, setMapped] = useState([])
     const [answerState, setAnswerState] = useState(false)
     const [array, setArray] = useState()
     const [styles, setStyles] = useState(null)
+    const [questionType, setQuestionType] = useState(false)
+    const [numQuestions, setNumQuestions] = useState(0)
+    const [finished, setFinished] = useState(false)
 
 
 
@@ -63,8 +69,6 @@ const Card = (children) => {
 
             // console.log('mapped', mapped)
 
-
-
         }
         else {
             return
@@ -81,20 +85,34 @@ const Card = (children) => {
     const letter = ["A", "B", "C", "D"]
 
     const handleNext = (e) => {
+        e.preventDefault()
+        if (numQuestions >= 9) {
+            setFinished(true)
+            return
+        }
+        else setNumQuestions((numQuestions => ++numQuestions))
         const buttons = document.querySelectorAll('.button button');
         buttons.forEach((button) => {
             button.classList.remove('right-answer-style', 'wrong-answer-style');
         });
 
+
         const filtered = data.filter(item => item?.name?.common !== current?.name?.common)
         setData(filtered)
         setAnswerState(false)
-        e.preventDefault()
+        if (new Date().getSeconds() % 2 === 0) {
+            setQuestionType(() => true)
+            return
+        }
+        else {
+            setQuestionType(() => false)
+            return
+        }
 
-        return
     }
 
-
+    console.log('quest', questionType)
+    console.log('nomQuestion', numQuestions)
 
     //ref from forwardRef on Question component
     // id compared to the ref innerText if the component
@@ -120,24 +138,47 @@ const Card = (children) => {
     }
 
 
+    const handleRetry = () => {
+        window.location.reload()
+    }
+    console.log('score', score)
+    const quest = [random.int(0, 3)]
 
+    // to do : this renders the type of question based on the second of time
+    // will use a boolean value to change state in the question object in
+    // order to determine which question to render.
+    // will uncomment the expression below to {rend} to continue
 
+    const rend = questionType ? (<div><Flag src={mapped[quest]?.flags?.png} /><Question questionType={questionType} key='question' questionText={mapped[quest]?.capital} ref={ref} /></div>) :
+        (<div><div className='hold-space'></div><Question key='question' questionType={questionType} questionText={mapped[quest]?.capital} ref={ref} /></div>)
 
     return (
         <div className="card">
-            <CardPanel>
-                <Avatar />
-                <Question key='question' questionText={mapped[random.int(0, 3)]?.capital} ref={ref} />
+            {
+
+                <>
+                    <Avatar finished={finished} />
+                    {finished ? <ScoreCard score={score} finished={finished} onClick={handleRetry} /> :
+                        <CardPanel>
+
+                            {/* <Flag src={mapped[quest]?.flags?.png} />
+                    <Question key='question' questionText={mapped[quest]?.capital} ref={ref} /> */}
+                            {rend}
 
 
-                <Button id={mapped[0]?.capital} disabled={answerState} letter={letter[0]} countryText={mapped[0]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[0]?.name?.common} />
-                <Button id={mapped[1]?.capital} disabled={answerState} letter={letter[1]} countryText={mapped[1]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[1]?.name?.common} />
-                <Button id={mapped[2]?.capital} disabled={answerState} letter={letter[2]} countryText={mapped[2]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[2]?.name?.common} />
-                <Button id={mapped[3]?.capital} disabled={answerState} letter={letter[3]} countryText={mapped[3]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[3]?.name?.common} />
+                            {mapped.map((question, index) => (<Button key={index} id={question?.capital} disabled={answerState} letter={letter[index]} countryText={question?.name?.common} onClick={(e) => handleAnswer(e)} value={question?.name?.common} />))}
+
+                            {/* <Button id={mapped[0]?.capital} disabled={answerState} letter={letter[0]} countryText={mapped[0]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[0]?.name?.common} />
+                    <Button id={mapped[1]?.capital} disabled={answerState} letter={letter[1]} countryText={mapped[1]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[1]?.name?.common} />
+                    <Button id={mapped[2]?.capital} disabled={answerState} letter={letter[2]} countryText={mapped[2]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[2]?.name?.common} />
+                    <Button id={mapped[3]?.capital} disabled={answerState} letter={letter[3]} countryText={mapped[3]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[3]?.name?.common} /> */}
 
 
-                <Next onClick={(e) => handleNext(e)} />
-            </CardPanel>
+                            <Next onClick={(e) => handleNext(e)} />
+                        </CardPanel>
+                    }
+                </>
+            }
         </div>
     )
 }

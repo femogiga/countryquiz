@@ -10,9 +10,7 @@ function App() {
   return (
 
     <div className='app'>
-      {/* <Card/> */}
-      <CardFlag/>
-      {/* <ScoreCard/> */}
+      <Card/>
     </div>
   )
 }

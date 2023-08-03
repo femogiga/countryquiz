@@ -40,7 +40,7 @@ body {
   font-size: var(--fs-md);
   background: url(./assets/countryquiz/background.png);
   background-position: 0px;
-  padding: 9rem 0;
+  padding: 7rem 0;
 
 }
 
@@ -273,6 +273,12 @@ button:active {
   padding: .8rem 3rem;
   font-size: var(--fs-md);
   border-radius: 10px;
+}
+
+.try-again-button:hover {
+  background-color: var(--clr-green);
+  color: white;
+  border-color: transparent;
 }
 
 
