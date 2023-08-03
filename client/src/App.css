@@ -292,6 +292,11 @@ button:active {
   font-size: var(--fs-xl);
 }
 
+.try-again > p{
+  letter-spacing: 1px;
+  font-size: var(--fs-m);
+}
+
 .score {
   font-size: var(--fs-xl);
   color: var(--clr-green)

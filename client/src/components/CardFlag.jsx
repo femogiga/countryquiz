@@ -20,16 +20,14 @@ import ScoreCard from "./ScoreCard"
 
 
 const CardFlag = (children) => {
-    const { data, setData } = useContext(CountryContext)
-    const [current, setCurrent] = useState(data[1]);
-    const [optionOne, setOptionOne] = useState(data[getRandomIndex(data)])
-    const [optionTwo, setOptionTwo] = useState(data[getRandomIndex(data)])
-    const [optionThree, setOptionThree] = useState(data[getRandomIndex(data)])
-    const [score, setScore] = useState(0)
-    const [mapped, setMapped] = useState([])
-    const [answerState, setAnswerState] = useState(false)
-    const [array, setArray] = useState()
-    const [styles, setStyles] = useState(null)
+    const { data, setData } = useContext(CountryContext)                                               //gets data from context
+    const [current, setCurrent] = useState(data[1]);                                                   //sets Curreent question
+    const [optionOne, setOptionOne] = useState(data[getRandomIndex(data)])                              //sets option one
+    const [optionTwo, setOptionTwo] = useState(data[getRandomIndex(data)])  //sets                       //set option two
+    const [optionThree, setOptionThree] = useState(data[getRandomIndex(data)])                          //set option three
+    const [score, setScore] = useState(0)                                                               //keeps track of score
+    const [mapped, setMapped] = useState([])                                                            //shuffled mapped = [op1,op2,op3,cu]
+    const [answerState, setAnswerState] = useState(false)                                                // answerState
     const [questionType, setQuestionType] = useState(false)
     const [numQuestions, setNumQuestions] = useState(0)
     const [finished, setFinished] = useState(false)
@@ -46,7 +44,7 @@ const CardFlag = (children) => {
         const randomIndex2 = random.int(0, data.length - 1);
         const randomIndex3 = random.int(0, data.length - 1);
         const randomIndex4 = random.int(0, data.length - 1);
-        const randomIndex5 = random.int(0, 3);
+
 
         if (data.length > 0) {
 
@@ -58,11 +56,7 @@ const CardFlag = (children) => {
 
             //array sort randomize the order to which the answers appear
             // array.sort(() => Math.random() - 0.5)
-            console.log('newArry', array)
-            console.log('current', current)
-            console.log('option', optionOne)
-            console.log('option', optionTwo)
-            console.log('option', optionThree)
+
             const array1 = [current, optionOne, optionTwo, optionThree]
             array1.sort(() => Math.random() - 0.5)
             setMapped(array1)
@@ -111,8 +105,6 @@ const CardFlag = (children) => {
 
     }
 
-    console.log('quest', questionType)
-    console.log('nomQuestion', numQuestions)
 
     //ref from forwardRef on Question component
     // id compared to the ref innerText if the component
@@ -127,10 +119,7 @@ const CardFlag = (children) => {
 
         else {
             e.target.classList.add('wrong-answer-style')
-            setStyles(false)
             setAnswerState(true)
-            console.log('false')
-            console.log("score", score)
             return;
         }
 
@@ -138,16 +127,16 @@ const CardFlag = (children) => {
     }
 
 
-    const handleRetry = () => {
+    const handleRestart = () => {
         window.location.reload()
     }
-    console.log('score', score)
+
     const quest = [random.int(0, 3)]
 
-    // to do : this renders the type of question based on the second of time
+    //qustionType this renders the type of question based on the second of time
     // will use a boolean value to change state in the question object in
     // order to determine which question to render.
-    // will uncomment the expression below to {rend} to continue
+    // {rend}  hold  the value of questionType to render
 
     const rend = questionType ? (<div><Flag src={mapped[quest]?.flags?.png} /><Question questionType={questionType} key='question' questionText={mapped[quest]?.capital} ref={ref} /></div>) :
         (<div><div className='hold-space'></div><Question key='question' questionType={questionType} questionText={mapped[quest]?.capital} ref={ref} /></div>)
@@ -158,24 +147,15 @@ const CardFlag = (children) => {
 
                 <>
                     <Avatar finished={finished} />
-                    {finished ? <ScoreCard score={score} finished={finished}  onClick = {handleRetry}/> :
-                        <CardPanel>
-
-                            {/* <Flag src={mapped[quest]?.flags?.png} />
-                    <Question key='question' questionText={mapped[quest]?.capital} ref={ref} /> */}
-                            {rend}
-
-
-                            {mapped.map((question, index) => (<Button key={index} id={question?.capital} disabled={answerState} letter={letter[index]} countryText={question?.name?.common} onClick={(e) => handleAnswer(e)} value={question?.name?.common} />))}
-
-                            {/* <Button id={mapped[0]?.capital} disabled={answerState} letter={letter[0]} countryText={mapped[0]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[0]?.name?.common} />
-                    <Button id={mapped[1]?.capital} disabled={answerState} letter={letter[1]} countryText={mapped[1]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[1]?.name?.common} />
-                    <Button id={mapped[2]?.capital} disabled={answerState} letter={letter[2]} countryText={mapped[2]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[2]?.name?.common} />
-                    <Button id={mapped[3]?.capital} disabled={answerState} letter={letter[3]} countryText={mapped[3]?.name?.common} onClick={(e) => handleAnswer(e)} value={mapped[3]?.name?.common} /> */}
-
-
-                            <Next onClick={(e) => handleNext(e)} />
-                        </CardPanel>
+                    {
+                        // finished state shecks if the numquestion has been reeach
+                        // if so, render score else keep rendering question
+                        finished ? <ScoreCard score={score} finished={finished} onClick={handleRestart} /> :
+                            <CardPanel>
+                                {rend}
+                                {mapped.map((question, index) => (<Button key={index} id={question?.capital} disabled={answerState} letter={letter[index]} countryText={question?.name?.common} onClick={(e) => handleAnswer(e)} value={question?.name?.common} />))}
+                                <Next onClick={(e) => handleNext(e)} />
+                            </CardPanel>
                     }
                 </>
             }

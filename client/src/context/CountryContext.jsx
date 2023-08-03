@@ -14,7 +14,7 @@ const CountryProvider = (props) => {
             .then(res => setData(res))
             .catch(e => console.error(e))
     }, [])
-    console.log(data)
+
     return (
         <CountryContext.Provider value={{ data, setData }}>
             {props.children}
