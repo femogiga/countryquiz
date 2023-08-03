@@ -1,5 +1,6 @@
 import CardPanel from "./CardPanel"
 import Avatar from "./Avatar"
+import undraw from '../photos/undraw_winners.svg'
 
 const ScoreCard = ({ score, finished, onClick }) => {
     return (
@@ -8,7 +9,7 @@ const ScoreCard = ({ score, finished, onClick }) => {
                 {/* <Avatar finished={finished} /> */}
                 <article className="try-again flex flex-col">
                     <div className="flow-1">
-                        <img src='../src/assets/countryquiz/undraw_winners.svg' />
+                        <img src={undraw} />
                     </div>
                     <h2 className="boldest">Results</h2>
                     <p className="flow-5">You got <span className='score boldest'>{score}</span> correct answers</p>
